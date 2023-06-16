@@ -8,6 +8,7 @@ class Navbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isWeb = MediaQuery.of(context).size.width >= 1000;
     return Center(
       // alignment: Alignment.center,
       child: Container(
@@ -16,9 +17,9 @@ class Navbar extends StatelessWidget implements PreferredSizeWidget {
         ),
         alignment: Alignment.center,
         width: 1000,
-        // padding: EdgeInsets.symmetric(vertical: 15),
+        padding: isWeb ? EdgeInsets.zero : EdgeInsets.symmetric(horizontal: 15),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: isWeb ? MainAxisAlignment.center : MainAxisAlignment.start,
           children: [
             Material(
               // borderRadius: BorderRadius.circular(100),
@@ -34,43 +35,35 @@ class Navbar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
             const EmptySpace.h2(),
-            // CircleAvatar(
-            //   radius: 30,
-            //   backgroundColor: AppColors.primary,
-            //   child: IconButton(
-            //     // style: IconButton.styleFrom(
-            //     //   backgroundColor: AppColors.primary,
-            //     // ),
-            //     onPressed: () => null,
-            //     icon: const Icon(Icons.mail_outline_outlined),
-            //   ),
-            // ),
+
             const SelectableText("Get in touch", style: TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.w300
             ),),
-            const Spacer(),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              child: SelectableText("Linkedin\t\t/", style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500
-              ),),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              child: SelectableText("Dribbble\t\t/", style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500
-              ),),
-            ),
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 5),
-              child: SelectableText("Instagram", style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500
-              ),),
-            )
+            if(isWeb)...[
+              const Spacer(),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: SelectableText("Linkedin\t\t/", style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500
+                ),),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: SelectableText("Dribbble\t\t/", style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500
+                ),),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 5),
+                child: SelectableText("Instagram", style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500
+                ),),
+              )
+            ]
           ],
         ),
       ),
