@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 
+import '../components/my_works.dart';
 import '../components/navbar.dart';
 import '../components/slider.dart';
 import '../utils/app_colors.dart';
+import '../utils/constant.dart';
 import '../utils/size_config.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,6 +18,17 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  // Controllers
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    // initialize scroll controllers
+    _scrollController = ScrollController();
+
+    super.initState();
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,95 +50,43 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const SizedBox(height: kToolbarHeight + 15),
                 Flexible(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.symmetric(vertical: 20.0),
-                    child: Column(
-                      // crossAxisAlignment: CrossAxisAlignment.stretch,
+                  child: WebSmoothScroll(
+                    controller: _scrollController,
+                    child: ListView(
+                      physics: const NeverScrollableScrollPhysics(),
+                      controller: _scrollController,
+                      padding: const EdgeInsets.symmetric(vertical: 20.0),
                       children: [
                         const EmptySpace.v4(multiple: 20),
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(100),
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          // child: Image.network(imgUrl, fit: BoxFit.cover, height: 100),
-                          child: Image.asset("assets/profile.jpg", fit: BoxFit.cover, height: 100),
+                        Center(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(100),
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            // child: Image.network(imgUrl, fit: BoxFit.cover, height: 100),
+                            child: Image.asset("assets/profile.jpg", fit: BoxFit.cover, height: 100),
+                          ),
                         ),
                         const EmptySpace.v2(),
-                        const SelectableText("Hi,I m Faiq", style: TextStyle(
-                            fontSize: 12,
-                            // fontWeight: FontWeight.w500
+                        const SelectableText("Hi,I m Faiq",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                          fontSize: 12,
+                          // fontWeight: FontWeight.w500
                         ),),
                         const EmptySpace.v2(),
-                        const SelectableText("Building digital\n products, brands, and\nexperience.",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 50,
-                            height: 1,
-                            fontWeight: FontWeight.w100
-                          ),
-                        ),
-                        const EmptySpace.v3(),
-                        Material(
-                          // borderRadius: BorderRadius.circular(20),
-                          shape: const RoundedRectangleBorder(side: BorderSide(color: AppColors.border)),
-                          color: AppColors.primary,
-                          child: InkWell(
-                            onTap: () => null,
-                            // borderRadius: BorderRadius.circular(20),
-                            child: const Padding(
-                              padding: EdgeInsets.all(18),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  SelectableText("Download Resume", style: TextStyle(
-                                    fontSize: 12,
-                                  ),),
-
-                                  Icon(Icons.download_outlined)
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const EmptySpace.v4(),
+                        ...commonWidget("Building digital\n products, brands, and\nexperience.", "Download Resume", const Icon(Icons.download_outlined)),
                         const WorkSlider(),
+                        const MyWorks(),
+
                         // Custom Divider
-                        const SizedBox(
-                            width: 1000,
-                            child: Divider(color: AppColors.border, thickness: .8,)
+                        const Center(
+                          child: SizedBox(
+                              width: Constant.screenWidth,
+                              child: Divider(color: AppColors.border, thickness: .8,)
+                          ),
                         ),
                         const EmptySpace.v2(multiple: 20),
-                        const SelectableText("Tell me about your\nnext project",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontSize: 50,
-                              height: 1,
-                              fontWeight: FontWeight.w100
-                          ),
-                        ),
-                        const EmptySpace.v3(),
-                        Material(
-                          // borderRadius: BorderRadius.circular(20),
-                          shape: const RoundedRectangleBorder(side: BorderSide(color: AppColors.border)),
-                          color: AppColors.primary,
-                          child: InkWell(
-                            onTap: () => null,
-                            // borderRadius: BorderRadius.circular(20),
-                            child: const Padding(
-                              padding: EdgeInsets.all(18),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  const SelectableText("Get in touch\t", style: TextStyle(
-                                    fontSize: 12,
-                                  ),),
-
-                                  Icon(Icons.mail_outline_outlined )
-                                ],
-                              ),
-                            ),
-                          ),
-                        ),
-                        const EmptySpace.v4(multiple: 20),
+                        ...commonWidget("Tell me about your\nnext project", "Get in touch\t", const Icon(Icons.mail_outline_outlined )),
                         Center(
                           child: Container(
                             decoration: const BoxDecoration(
@@ -177,3 +140,39 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+List<Widget> commonWidget(String title, String buttonText, Widget icon) => [
+  SelectableText(title,
+    textAlign: TextAlign.center,
+    style: GoogleFonts.outfit(
+        fontSize: 50,
+        height: 1,
+        fontWeight: FontWeight.w400
+    ),
+  ),
+  const EmptySpace.v3(),
+  Center(
+    child: Material(
+      // borderRadius: BorderRadius.circular(20),
+      shape: const RoundedRectangleBorder(side: BorderSide(color: AppColors.border)),
+      color: AppColors.primary,
+      child: InkWell(
+        onTap: () => null,
+        // borderRadius: BorderRadius.circular(20),
+        child: Padding(
+          padding: const EdgeInsets.all(18),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              SelectableText(buttonText, style: const TextStyle(
+                fontSize: 12,
+              ),),
+              icon
+            ],
+          ),
+        ),
+      ),
+    ),
+  ),
+  const EmptySpace.v4(multiple: 20)
+];

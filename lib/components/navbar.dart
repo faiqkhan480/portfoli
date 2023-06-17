@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfoli/utils/constant.dart';
 
 import '../utils/app_colors.dart';
 import '../utils/size_config.dart';
@@ -8,7 +9,7 @@ class Navbar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool isWeb = MediaQuery.of(context).size.width >= 1000;
+    bool isWeb = MediaQuery.of(context).size.width >= Constant.screenWidth;
     return Center(
       // alignment: Alignment.center,
       child: Container(
@@ -16,7 +17,7 @@ class Navbar extends StatelessWidget implements PreferredSizeWidget {
           border: Border(bottom: BorderSide(color: AppColors.border,  width: 1.5)),
         ),
         alignment: Alignment.center,
-        width: 1000,
+        width: Constant.screenWidth,
         padding: isWeb ? EdgeInsets.zero : EdgeInsets.symmetric(horizontal: 15),
         child: Row(
           mainAxisAlignment: isWeb ? MainAxisAlignment.center : MainAxisAlignment.start,

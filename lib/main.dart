@@ -13,6 +13,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
@@ -26,11 +28,15 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           color: Colors.transparent
         ),
-        textTheme: GoogleFonts.outfitTextTheme().apply(
+        textTheme: GoogleFonts.outfitTextTheme(textTheme).apply(
           bodyColor: AppColors.secondary,
           displayColor: AppColors.secondary,
         ),
         useMaterial3: true,
+        //   .copyWith(
+        // textTheme: GoogleFonts.outfitTextTheme(textTheme).apply(
+        //   fontFamily: GoogleFonts.outfit().fontFamily
+        // )
       ),
       home: const HomeScreen(),
     );
