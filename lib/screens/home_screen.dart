@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:marqueer/marqueer.dart';
 import 'package:web_smooth_scroll/web_smooth_scroll.dart';
 
 import '../components/my_works.dart';
@@ -18,6 +19,7 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  MarqueerController marqueeController = MarqueerController();
   // Controllers
   late ScrollController _scrollController;
 
@@ -75,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),),
                         const EmptySpace.v2(),
                         ...commonWidget("Building digital\n products, brands, and\nexperience.", "Download Resume", const Icon(Icons.download_outlined)),
-                        const WorkSlider(),
+                        WorkSlider(marqueeController: marqueeController),
                         const MyWorks(),
 
                         // Custom Divider
