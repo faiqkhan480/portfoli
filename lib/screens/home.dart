@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:portfoli/utils/size_config.dart';
 
 import 'projects.dart';
 
@@ -30,19 +31,40 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          FloatingActionButton(
-            onPressed: previousPage,
-            child: const Icon(Icons.arrow_back),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
+      floatingActionButton: Align(
+        alignment: Alignment.centerLeft,
+        child: Container(
+          decoration: BoxDecoration(
+            color: const Color(0xFF343639),
+            borderRadius: BorderRadius.circular(50),
+            border: Border.all(color: const Color(0xFF44474b))
           ),
-          FloatingActionButton(
-            onPressed: nextPage,
-            child: const Icon(Icons.arrow_forward),
+          padding: const EdgeInsets.all(5),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton(
+                onPressed: previousPage,
+                hoverColor: Colors.black,
+                color: Colors.white,
+                iconSize: 30,
+                padding: const EdgeInsets.all(20),
+                icon: const Icon(Icons.arrow_back),
+              ),
+              const EmptySpace.v2(),
+              IconButton(
+                onPressed: nextPage,
+                hoverColor: Colors.black,
+                color: Colors.white,
+                iconSize: 30,
+                padding: const EdgeInsets.all(20),
+                icon: const Icon(Icons.arrow_forward),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
