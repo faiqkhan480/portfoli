@@ -1,9 +1,8 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:marqueer/marqueer.dart';
 
 import '../utils/app_colors.dart';
+import '../utils/constant.dart';
 
 List<String> logos = [
   "assets/logos/black.png",
@@ -32,6 +31,7 @@ class WorkSlider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isWeb = MediaQuery.of(context).size.width >= Constant.screenWidth;
     return Container(
       decoration: const BoxDecoration(
           color: AppColors.primary,
@@ -46,14 +46,15 @@ class WorkSlider extends StatelessWidget {
           controller: marqueeController,
           padding: const EdgeInsets.symmetric(vertical: 40),
           autoStart: true,
-          autoStartAfter: const Duration(milliseconds: 350),
+          // autoStartAfter: const Duration(milliseconds: 350),
           pps: 100,
+          interaction: false,
           infinity: true,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: List.generate(logos.length, (index) => Image.asset(
               logos.elementAt(index),
-              width: MediaQuery.of(context).size.width *.20,
+              width: MediaQuery.of(context).size.width *(isWeb ? .20 : .50),
               color: index == 0 || index == 1 ? AppColors.secondary : AppColors.primary,
               colorBlendMode: index == 0 || index == 1 ? null : BlendMode.saturation,
             )),

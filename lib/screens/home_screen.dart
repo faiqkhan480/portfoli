@@ -33,19 +33,20 @@ class _HomeScreenState extends State<HomeScreen> {
   
   @override
   Widget build(BuildContext context) {
+    bool isWeb = MediaQuery.of(context).size.width >= Constant.screenWidth;
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: const Navbar(),
       body: Stack(
         fit: StackFit.loose,
         children: [
-          Positioned.fill(
-            child: SvgPicture.asset("assets/BG-Tx.svg",
-              fit: BoxFit.cover,
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-            ),
-          ),
+          // Positioned.fill(
+          //   child: SvgPicture.asset("assets/BG-Tx.svg",
+          //     fit: BoxFit.cover,
+          //     width: MediaQuery.of(context).size.width,
+          //     height: MediaQuery.of(context).size.height,
+          //   ),
+          // ),
           Positioned.fill(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,6 +56,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: WebSmoothScroll(
                     controller: _scrollController,
                     child: ListView(
+                      shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
                       controller: _scrollController,
                       padding: const EdgeInsets.symmetric(vertical: 20.0),
@@ -65,14 +67,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(100),
                             clipBehavior: Clip.antiAliasWithSaveLayer,
                             // child: Image.network(imgUrl, fit: BoxFit.cover, height: 100),
-                            child: Image.asset("assets/profile.jpg", fit: BoxFit.cover, height: 100),
+                            child: Image.asset("assets/profile.jpg", fit: BoxFit.cover, height: 200),
                           ),
                         ),
                         const EmptySpace.v2(),
                         const SelectableText("Hi,I m Faiq",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                          fontSize: 12,
+                          fontSize: 18,
                           // fontWeight: FontWeight.w500
                         ),),
                         const EmptySpace.v2(),
@@ -97,7 +99,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             alignment: Alignment.center,
                             width: 1000,
                             padding: const EdgeInsets.symmetric(vertical: 20).copyWith(bottom: 0),
-                            child: const Row(
+                            child: isWeb ?
+                            const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SelectableText("© 2023 All rights reserved.", style: TextStyle(
@@ -127,7 +130,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),),
                                 )
                               ],
-                            ),
+                            ) :
+                            const SelectableText("© 2023 All rights reserved.", style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.w100
+                            ),),
                           ),
                         )
                       ],
@@ -149,7 +156,7 @@ List<Widget> commonWidget(String title, String buttonText, Widget icon) => [
     style: GoogleFonts.outfit(
         fontSize: 50,
         height: 1,
-        fontWeight: FontWeight.w400
+        fontWeight: FontWeight.w600
     ),
   ),
   const EmptySpace.v3(),
