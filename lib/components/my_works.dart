@@ -46,6 +46,7 @@ class MyWorks extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.end,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const Spacer(),
                     SelectableText(data.elementAt(index).title ?? "",
                       textAlign: TextAlign.start,
                       style: GoogleFonts.outfit(

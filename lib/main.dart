@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:portfoli/utils/app_colors.dart';
 
+import 'screens/home.dart';
 import 'screens/home_screen.dart';
 
 void main() {
@@ -38,7 +39,7 @@ class MyApp extends StatelessWidget {
         //   fontFamily: GoogleFonts.outfit().fontFamily
         // )
       ),
-      home: const HomeScreen(),
+      home: const Home(),
     );
   }
 }
