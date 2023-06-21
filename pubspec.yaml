@@ -17,6 +17,7 @@ dependencies:
   flutter_svg: ^2.0.7
   web_smooth_scroll: ^1.1.0
   marqueer: ^1.4.0
+  just_the_tooltip: ^0.0.12
 
 dev_dependencies:
   flutter_test:
@@ -31,4 +32,5 @@ flutter:
   assets:
     - assets/
     - assets/brands/
+    - assets/icons/
     - assets/logos/
