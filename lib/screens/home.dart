@@ -5,6 +5,7 @@ import 'package:portfoli/utils/size_config.dart';
 
 import '../widgets/custom_fab.dart';
 import 'experience.dart';
+import 'profile.dart';
 import 'projects.dart';
 
 class Home extends StatefulWidget {
@@ -15,8 +16,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  final PageController _pageController = PageController(initialPage: 2);
-  int selectedIndex = 2;
+  final PageController _pageController = PageController();
+  int selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +31,7 @@ class _HomeState extends State<Home> {
             scrollDirection: Axis.vertical,
             physics: const NeverScrollableScrollPhysics(),
             children: const <Widget>[
-              Center(
-                child: Text('First Page'),
-              ),
+              Profile(),
               Projects(),
               Experience(),
             ],

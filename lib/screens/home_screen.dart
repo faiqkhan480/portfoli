@@ -154,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
 List<Widget> commonWidget(String title, String buttonText, Widget icon) => [
   SelectableText(title,
     textAlign: TextAlign.center,
-    style: GoogleFonts.outfit(
+    style: GoogleFonts.dmSans(
         fontSize: 50,
         height: 1,
         fontWeight: FontWeight.w600

@@ -15,7 +15,7 @@ class Footer extends StatelessWidget {
         SelectableText(
           "Let's collaborate!",
           textAlign: TextAlign.start,
-          style: GoogleFonts.outfit(
+          style: GoogleFonts.dmSans(
               fontSize: 80,
               color: Colors.white,
               fontWeight: FontWeight.w600
@@ -35,7 +35,7 @@ class Footer extends StatelessWidget {
                 child: Ink(
                   padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
                   child: Text("Contact",
-                    style: GoogleFonts.outfit(
+                    style: GoogleFonts.dmSans(
                         fontSize: 20,
                         color: Colors.white,
                         fontWeight: FontWeight.w600
@@ -51,7 +51,7 @@ class Footer extends StatelessWidget {
             SelectableText(
               "©2023 Faiq Saeed",
               textAlign: TextAlign.start,
-              style: GoogleFonts.outfit(
+              style: GoogleFonts.dmSans(
                   fontSize: 16,
                   color: const Color(0xFF7C7C7C),
                   fontWeight: FontWeight.w400

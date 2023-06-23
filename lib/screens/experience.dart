@@ -29,7 +29,7 @@ class Experience extends StatelessWidget {
                 SelectableText(
                   "Work Experience",
                   textAlign: TextAlign.start,
-                  style: GoogleFonts.outfit(
+                  style: GoogleFonts.dmSans(
                       fontSize: 80,
                       color: Colors.white,
                       fontWeight: FontWeight.w600
@@ -40,7 +40,7 @@ class Experience extends StatelessWidget {
                 SelectableText(
                   "Let’s collaborate on a new project!",
                   textAlign: TextAlign.start,
-                  style: GoogleFonts.outfit(
+                  style: GoogleFonts.dmSans(
                       fontSize: 22,
                       height: 1,
                       color: const Color(0xFF7C7C7C),
@@ -48,7 +48,6 @@ class Experience extends StatelessWidget {
                   ),
                 ),
                 const EmptySpace(multiple: 10),
-
                 company(),
                 const EmptySpace(multiple: 10),
                 company(),
@@ -77,7 +76,7 @@ class Experience extends StatelessWidget {
             SelectableText(
               "2010 - 2015",
               textAlign: TextAlign.start,
-              style: GoogleFonts.outfit(
+              style: GoogleFonts.dmSans(
                   fontSize: 18,
                   height: 1,
                   color: Colors.white,
@@ -89,7 +88,7 @@ class Experience extends StatelessWidget {
             SelectableText(
               "Company Name",
               textAlign: TextAlign.start,
-              style: GoogleFonts.outfit(
+              style: GoogleFonts.dmSans(
                   fontSize: 16,
                   height: 1,
                   color: const Color(0xFF7C7C7C),
@@ -101,7 +100,7 @@ class Experience extends StatelessWidget {
             SelectableText(
               "City State",
               textAlign: TextAlign.start,
-              style: GoogleFonts.outfit(
+              style: GoogleFonts.dmSans(
                   fontSize: 16,
                   height: 1,
                   color: const Color(0xFF7C7C7C),
@@ -119,7 +118,7 @@ class Experience extends StatelessWidget {
               SelectableText(
                 "D & P design development",
                 textAlign: TextAlign.start,
-                style: GoogleFonts.outfit(
+                style: GoogleFonts.dmSans(
                     fontSize: 18,
                     height: 1,
                     color: Colors.white,
@@ -131,7 +130,7 @@ class Experience extends StatelessWidget {
               SelectableText(
                 "Filler text is text that shares some characteristics of a real written text, but is random or otherwise generated. It may be used to display a sample of fonts, generate text for testing, or to spoof an e-mail spam filter.",
                 textAlign: TextAlign.start,
-                style: GoogleFonts.outfit(
+                style: GoogleFonts.dmSans(
                     fontSize: 16,
                     height: 1,
                     color: const Color(0xFF7C7C7C),

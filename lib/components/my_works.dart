@@ -18,7 +18,7 @@ class MyWorks extends StatelessWidget {
         children: [
           SelectableText("Some of my works",
             textAlign: TextAlign.center,
-            style: GoogleFonts.outfit(
+            style: GoogleFonts.dmSans(
                 fontSize: 50,
                 height: 1,
                 fontWeight: FontWeight.w300

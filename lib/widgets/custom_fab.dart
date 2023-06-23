@@ -29,7 +29,7 @@ class CustomFab extends StatelessWidget {
         ..close(),
       content: isSelected ? const SizedBox.shrink() : Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        child: Text(name, style: GoogleFonts.outfit(
+        child: Text(name, style: GoogleFonts.dmSans(
             fontSize: 14,
             color: Colors.black,
             fontWeight: FontWeight.w600
