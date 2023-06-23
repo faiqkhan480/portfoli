@@ -59,21 +59,31 @@ class _ProfileState extends State<Profile> with TickerProviderStateMixin {
         children: [
           Row(
             children: [
-              RichText(
-                  text: TextSpan(
-                    style: GoogleFonts.dmSans(
-                        fontSize: 80,
-                        color: Colors.white,
-                        letterSpacing: -4,
-                        fontWeight: FontWeight.w700
-                    ),
-                    children: [
-                      const TextSpan(text: "Hey, I’m Faiq\na "),
-                      TextSpan(text: "Flutter Developer.", style: GoogleFonts.dmSans(
-                          color: const Color(0xFF6f6f6f)
-                      ),),
-                    ]
-                  )
+              Center(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  child: Image.asset("assets/profile.jpg", fit: BoxFit.cover, height: 160),
+                ),
+              ),
+              const EmptySpace.h3(),
+              Flexible(
+                child: RichText(
+                    text: TextSpan(
+                      style: GoogleFonts.dmSans(
+                          fontSize: 70,
+                          color: Colors.white,
+                          letterSpacing: -4,
+                          fontWeight: FontWeight.w700
+                      ),
+                      children: [
+                        const TextSpan(text: "Hey, I’m Faiq\na"),
+                        TextSpan(text: " Flutter Developer.", style: GoogleFonts.dmSans(
+                            color: const Color(0xFF6f6f6f)
+                        ),),
+                      ]
+                    )
+                ),
               ),
             ],
           ),

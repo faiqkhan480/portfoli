@@ -57,6 +57,35 @@ class Footer extends StatelessWidget {
                   fontWeight: FontWeight.w400
               ),
             ),
+            SelectableText(
+              "·",
+              style: GoogleFonts.dmSans(
+                  fontSize: 30,
+                  color: const Color(0xFF7C7C7C),
+                  fontWeight: FontWeight.bold
+              ),
+            ),
+            TextButton(
+                onPressed: () => null,
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                    textStyle: GoogleFonts.dmSans(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w700
+                    )
+                ),
+                child: const Text(
+                   "Download CV",
+                )
+            )
+            // SelectableText(
+            //   "Download CV",
+            //   style: GoogleFonts.dmSans(
+            //       fontSize: 16,
+            //       color: Colors.white,
+            //       fontWeight: FontWeight.w400
+            //   ),
+            // ),
           ],
         ),
         const EmptySpace.v2(),
