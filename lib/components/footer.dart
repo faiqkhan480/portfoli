@@ -8,22 +8,26 @@ class Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = SizeConfig.screenWidth < 600;
+
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: isMobile ? CrossAxisAlignment.center : CrossAxisAlignment.stretch,
       children: [
-        const EmptySpace(multiple: 10),
+        const EmptySpace(multiple: 5),
         SelectableText(
           "Let's collaborate!",
-          textAlign: TextAlign.start,
+          textAlign: isMobile ? TextAlign.center : TextAlign.start,
           style: GoogleFonts.dmSans(
-              fontSize: 80,
+            letterSpacing: -2,
+              fontSize: SizeConfig.textMultiplier * 4,
               color: Colors.white,
-              fontWeight: FontWeight.w600
+              fontWeight: FontWeight.w700
           ),
         ),
-
+        if(isMobile)
+          const EmptySpace.v4(),
         Align(
-          alignment: Alignment.centerLeft,
+          alignment: isMobile ? Alignment.center :  Alignment.centerLeft,
           child: Material(
             color: const Color(0xFF343639),
             borderRadius: BorderRadius.circular(50),
@@ -31,12 +35,14 @@ class Footer extends StatelessWidget {
                 onTap: () => null,
                 hoverColor: Colors.black,
                 borderRadius: BorderRadius.circular(50),
-                splashColor: Colors.black,
+                splashColor: Theme.of(context).colorScheme.inversePrimary,
                 child: Ink(
-                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+                  padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 12),
+                  width: isMobile ? SizeConfig.screenWidth * .70 : null,
                   child: Text("Contact",
+                    textAlign: TextAlign.center,
                     style: GoogleFonts.dmSans(
-                        fontSize: 20,
+                        fontSize: SizeConfig.textMultiplier * 3,
                         color: Colors.white,
                         fontWeight: FontWeight.w600
                     ),),
@@ -45,8 +51,9 @@ class Footer extends StatelessWidget {
           ),
         ),
 
-        const EmptySpace(multiple: 8),
-        Row(
+        const EmptySpace(multiple: 4),
+        if(isMobile)
+          Column(
           children: [
             SelectableText(
               "©2023 Faiq Saeed",
@@ -61,6 +68,7 @@ class Footer extends StatelessWidget {
               "·",
               style: GoogleFonts.dmSans(
                   fontSize: 30,
+                  height: 1,
                   color: const Color(0xFF7C7C7C),
                   fontWeight: FontWeight.bold
               ),
@@ -87,7 +95,50 @@ class Footer extends StatelessWidget {
             //   ),
             // ),
           ],
-        ),
+        )
+        else
+          Row(
+            children: [
+              SelectableText(
+                "©2023 Faiq Saeed",
+                textAlign: TextAlign.start,
+                style: GoogleFonts.dmSans(
+                    fontSize: 16,
+                    color: const Color(0xFF7C7C7C),
+                    fontWeight: FontWeight.w400
+                ),
+              ),
+              SelectableText(
+                "·",
+                style: GoogleFonts.dmSans(
+                    fontSize: 30,
+                    color: const Color(0xFF7C7C7C),
+                    fontWeight: FontWeight.bold
+                ),
+              ),
+              TextButton(
+                  onPressed: () => null,
+                  style: TextButton.styleFrom(
+                      foregroundColor: Colors.white,
+                      textStyle: GoogleFonts.dmSans(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700
+                      )
+                  ),
+                  child: const Text(
+                    "Download CV",
+                  )
+              )
+              // SelectableText(
+              //   "Download CV",
+              //   style: GoogleFonts.dmSans(
+              //       fontSize: 16,
+              //       color: Colors.white,
+              //       fontWeight: FontWeight.w400
+              //   ),
+              // ),
+            ],
+          ),
         const EmptySpace.v2(),
       ],
     );

@@ -3,6 +3,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:just_the_tooltip/just_the_tooltip.dart';
 import 'package:portfoli/utils/size_config.dart';
 
+import '../utils/app_colors.dart';
 import '../widgets/custom_fab.dart';
 import 'experience.dart';
 import 'profile.dart';
@@ -18,6 +19,16 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   final PageController _pageController = PageController();
   int selectedIndex = 0;
+
+  final bool isMobile = SizeConfig.screenWidth < 600;
+
+  bool isMenu = false;
+
+  handleMenu() {
+    setState(() {
+      isMenu = !isMenu;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,10 +48,69 @@ class _HomeState extends State<Home> {
             ],
           ),
 
-          Positioned(
+          if(isMobile && isMenu)
+            Container(
+              color: Colors.black.withOpacity(.6),
+            ),
+
+          if(isMobile)
+            Positioned(
+                top: 20,
+                left: 0,
+                right: 0,
+                child: InkWell(
+                  onTap: handleMenu,
+                  splashColor: Theme.of(context).colorScheme.inversePrimary,
+                  child: Ink(
+                    decoration: const BoxDecoration(
+                      color: Colors.black
+                    ),
+                    height: 60,
+                    child: Center(
+                      child: SizedBox(
+                        width: SizeConfig.screenWidth * .90,
+                        child: Row(
+                          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            const CircleAvatar(
+                              backgroundColor: Colors.green,
+                              radius: 4,
+                            ),
+                            const EmptySpace(),
+                            Text(
+                              "Available for hire.",
+                              style: GoogleFonts.dmSans(
+                                  fontSize: SizeConfig.textMultiplier * 2,
+                                  height: 1,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600
+                              ),
+                            ),
+                            const Spacer(),
+                            IconButton(
+                              onPressed: () => null,
+                              hoverColor:  Colors.grey,
+                              color: Colors.white,
+                              iconSize: 14,
+                              style: IconButton.styleFrom(
+                                  backgroundColor: AppColors.buttonBackGround
+                              ),
+                              icon: const Icon(Icons.menu_rounded),
+                            )
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+            ),
+
+          // if(!isMobile || isMenu)
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 350),
             // bottom: 0,
             // top: 0,
-            left: 20,
+            left: (!isMobile || isMenu) ? 20 : -100,
             child: Container(
               decoration: BoxDecoration(
                   color: const Color(0xFF343639),
@@ -82,6 +152,7 @@ class _HomeState extends State<Home> {
   }
 
   void  goto(int index){
+    handleMenu();
     _pageController.animateToPage(index,
         duration: const Duration(milliseconds: 400),
         curve: Curves.easeIn

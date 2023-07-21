@@ -1,4 +1,3 @@
-import 'dart:html' as html;
 // import 'dart:js' as js;
 
 import 'package:flutter/material.dart';
@@ -15,6 +14,8 @@ class Projects extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bool isMobile = SizeConfig.screenWidth < 600;
+
     return ScrollWrapper(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -115,9 +116,9 @@ class Projects extends StatelessWidget {
   }
 
   goto(String url) {
-    if(url.isNotEmpty) {
-      html.window.open(url, 'new tab');
-    }
-    // js.context.callMethod('open', ['https://stackoverflow.com/questions/ask']);
+    // if(url.isNotEmpty) {
+    //   html.window.open(url, 'new tab');
+    // }
+
   }
 }

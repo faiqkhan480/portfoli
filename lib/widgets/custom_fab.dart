@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:just_the_tooltip/just_the_tooltip.dart';
 
+import '../utils/size_config.dart';
+
 class CustomFab extends StatelessWidget {
   const CustomFab({
     super.key,
@@ -18,6 +20,7 @@ class CustomFab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool isMobile = SizeConfig.screenWidth < 600;
     return JustTheTooltip(
       borderRadius: BorderRadius.circular(50),
       backgroundColor: Colors.white,
@@ -42,8 +45,11 @@ class CustomFab extends StatelessWidget {
         style: IconButton.styleFrom(
           backgroundColor: isSelected ? Colors.white : null
         ),
-        padding: const EdgeInsets.all(25),
-        icon: Image.asset(icon, height: 25, color: isSelected ? Colors.black : Colors.white,),
+        padding: EdgeInsets.all(isMobile ? 15 : 25),
+        icon: Image.asset(
+          icon, height: isMobile ? SizeConfig.screenHeight * .03 : 25,
+          color: isSelected ? Colors.black : Colors.white,
+        ),
       ),
     );
   }

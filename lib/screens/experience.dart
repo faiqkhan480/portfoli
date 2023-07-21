@@ -14,6 +14,8 @@ class Experience extends StatelessWidget {
     double screenWidth = 800;
     ScrollController scrollController = ScrollController();
 
+    final bool isMobile = SizeConfig.screenWidth < 600;
+
     return WebSmoothScroll(
       controller: scrollController,
       child: SingleChildScrollView(
@@ -28,23 +30,29 @@ class Experience extends StatelessWidget {
               children: [
                 SelectableText(
                   "Work Experience",
-                  textAlign: TextAlign.start,
+                  textAlign: isMobile ? TextAlign.center : TextAlign.start,
                   style: GoogleFonts.dmSans(
-                      fontSize: 80,
+                      fontSize: SizeConfig.textMultiplier * 5,
                       color: Colors.white,
                       fontWeight: FontWeight.w600
                   ),
                 ),
                 const EmptySpace(multiple: 3),
                 const Divider(height: 50, color: AppColors.secondary, thickness: .3,),
-                SelectableText(
-                  "Let’s collaborate on a new project!",
-                  textAlign: TextAlign.start,
-                  style: GoogleFonts.dmSans(
-                      fontSize: 22,
-                      height: 1,
-                      color: const Color(0xFF7C7C7C),
-                      fontWeight: FontWeight.w400
+                Align(
+                  alignment: isMobile ? Alignment.center : Alignment.centerLeft,
+                  child: SizedBox(
+                    width: isMobile ? SizeConfig.screenWidth * .80 : null,
+                    child: SelectableText(
+                      "Let’s collaborate on a new project!",
+                      textAlign: TextAlign.start,
+                      style: GoogleFonts.dmSans(
+                          fontSize: SizeConfig.textMultiplier * 3,
+                          height: 1,
+                          color: const Color(0xFF7C7C7C),
+                          fontWeight: FontWeight.w400
+                      ),
+                    ),
                   ),
                 ),
                 const EmptySpace(multiple: 10),
@@ -66,6 +74,75 @@ class Experience extends StatelessWidget {
   }
 
   Widget company() {
+    final bool isMobile = SizeConfig.screenWidth < 600;
+    if(isMobile) {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Job Title
+          SelectableText(
+            "Software Developer",
+            textAlign: TextAlign.start,
+            style: GoogleFonts.dmSans(
+                fontSize: 18,
+                height: 1,
+                color: Colors.white,
+                fontWeight: FontWeight.w400
+            ),
+          ),
+          const EmptySpace.v2(),
+          // Company Name
+          SelectableText(
+            "Company Name",
+            textAlign: TextAlign.start,
+            style: GoogleFonts.dmSans(
+                fontSize: 16,
+                height: 1,
+                color: const Color(0xFF7C7C7C),
+                fontWeight: FontWeight.w400
+            ),
+          ),
+          const EmptySpace(),
+          // Duration
+          SelectableText(
+            "2010 - 2015",
+            textAlign: TextAlign.start,
+            style: GoogleFonts.dmSans(
+                fontSize: 18,
+                height: 1,
+                color: Colors.white,
+                fontWeight: FontWeight.w400
+            ),
+          ),
+          const EmptySpace.v2(),
+          // City
+          SelectableText(
+            "City State",
+            textAlign: TextAlign.start,
+            style: GoogleFonts.dmSans(
+                fontSize: 16,
+                height: 1,
+                color: const Color(0xFF7C7C7C),
+                fontWeight: FontWeight.w400
+            ),
+          ),
+          const EmptySpace.h3(),
+
+          // Job Description
+          SelectableText(
+            "Filler text is text that shares some characteristics of a real written text, but is random or otherwise generated. It may be used to display a sample of fonts, generate text for testing, or to spoof an e-mail spam filter.",
+            textAlign: TextAlign.start,
+            style: GoogleFonts.dmSans(
+                fontSize: 16,
+                height: 1,
+                color: const Color(0xFF7C7C7C),
+                fontWeight: FontWeight.w400
+            ),
+          ),
+        ],
+      );
+    }
+
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
